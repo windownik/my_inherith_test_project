@@ -99,21 +99,26 @@ class CustomTextWithBtnState extends State<CustomTextWithBtn> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 300,
-      color: color ? _oneColor: _twoColor,
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Text(_result, style: const TextStyle(fontSize: 25),),
-            ElevatedButton(onPressed: () {
-              DataProviderInherited.of(context)?.toTop();
-              setState(() {});
-            },
-              child: const Text('Send to TOP!', style: TextStyle(fontSize: 25),),)
-          ],
-        )
+
+
+    return AnimatedContainer(
+      width: color ? 150 : 350,
+      height: 100,
+      // left: color ? 100 : 150,
+      duration: const Duration(milliseconds: 100),
+      child: Material(
+          color: color ? _oneColor: _twoColor,
+          child: Column(
+            children: [
+              Text(_result, style: const TextStyle(fontSize: 25),),
+              ElevatedButton(onPressed: () {
+                DataProviderInherited.of(context)?.toTop();
+                setState(() {});
+              },
+                child: const Text('Send to TOP!', style: TextStyle(fontSize: 25),),)
+            ],
+          )
+      ),
     );
   }
 }
